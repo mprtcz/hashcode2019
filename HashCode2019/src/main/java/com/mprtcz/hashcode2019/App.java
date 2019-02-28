@@ -7,18 +7,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Comparator.comparingInt;
+
 public class App {
     Map<Integer, Set<String>> verticals = new HashMap<>();
-    Map<String, Set<String>> horizontals = new HashMap<>();
+    Map<String, Set<String>> horizontals = new TreeMap<>();
     Map<String, List<Integer>> indexesForTags = new HashMap<>();
+
+    Map<String, Set<String>> slides = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException {
         App app = new App();
         app.readContent();
+        app.sort();
     }
 
     private void readContent() throws IOException {
-        try (Stream<String> lines = Files.lines(Paths.get("C:\\Users\\dqnx67\\Learning\\hashcode2019\\HashCode2019\\src\\main\\resources\\a_example.txt"))) {
+        try (Stream<String> lines = Files.lines(Paths.get("C:\\Users\\dqnx67\\Learning\\hashcode2019\\HashCode2019\\src\\main\\resources\\b_lovely_landscapes.txt"))) {
             List<String> lineLists = lines.collect(Collectors.toList());
 
             for(int i = 1; i < lineLists.size(); i++) {
@@ -40,11 +45,18 @@ public class App {
                     }
                 }
             }
-            System.out.println(verticals);
-            System.out.println(horizontals);
-            System.out.println(indexesForTags);
+            //System.out.println(verticals);
+            //System.out.println(horizontals);
+            //System.out.println(indexesForTags);
         }
     }
 
+    void sort() {
+        horizontals.entrySet().stream()
+                .sorted(comparingInt(e -> -e.getValue().size()))
+                .forEachOrdered(x -> slides.put(x.getKey(), x.getValue()));
+
+        slides.entrySet().forEach(entry -> System.out.println(entry.getValue().size()));
+    }
 
 }
