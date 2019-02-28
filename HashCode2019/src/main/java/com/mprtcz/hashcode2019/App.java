@@ -20,11 +20,12 @@ public class App {
     public static void main(String[] args) throws IOException {
         App app = new App();
         app.readContent();
-        app.sort();
+        //app.sort();
+        System.out.println(AlbumCreator.solve(app.horizontals));
     }
 
     private void readContent() throws IOException {
-        try (Stream<String> lines = Files.lines(Paths.get("C:\\Users\\dqnx67\\Learning\\hashcode2019\\HashCode2019\\src\\main\\resources\\b_lovely_landscapes.txt"))) {
+        try (Stream<String> lines = Files.lines(Paths.get("C:\\Users\\dqnx67\\Learning\\hashcode2019\\HashCode2019\\src\\main\\resources\\c_memorable_moments.txt"))) {
             List<String> lineLists = lines.collect(Collectors.toList());
 
             for(int i = 1; i < lineLists.size(); i++) {
