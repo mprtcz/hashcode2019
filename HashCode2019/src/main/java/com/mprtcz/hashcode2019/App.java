@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import static java.util.Comparator.comparingInt;
 
+//C:\Users\dqnx67\Learning\hashcode2019\HashCode2019\src\main\resources\
 public class App {
     Map<Integer, Set<String>> verticals = new HashMap<>();
     Map<String, Set<String>> horizontals = new TreeMap<>();
